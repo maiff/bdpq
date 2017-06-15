@@ -6,12 +6,14 @@ import ItemContainer from './compoent/ItemContainer'
 import gameStore from './store/gameState'
 // const gameStore = new Game()
 import {observer} from 'mobx-react'
+import isPhone from './compoent/common/isPhone'
 
 @observer
 class App extends React.Component {
   render () {
+
     return (
-      <div style={{textAlign: 'center'}}>
+      isPhone() ? <div style={{textAlign: 'center'}}>
         <ItemContainer gameStore={gameStore} />
         {process.env.NODE_ENV === 'production' || <DevTools />}
         {gameStore.isSuccess && (<h1 onClick={gameStore.initLevel.bind(gameStore, gameStore.list.length + 1)}> win!! 点我下一关~</h1>)}
@@ -21,7 +23,7 @@ class App extends React.Component {
             bottom: 0
           }
         }>点击选择，胜利条件：全部变成同一个字母~</p>
-      </div>
+      </div> : <p>请用手机打开</p>
     )
   }
 }
