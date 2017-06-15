@@ -11,7 +11,6 @@ export default function isPhone() {
   if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ){
     return false
   }else{
- //window.location.href='http://m.xxx.net'; 
-  return true
+    return true
  }
 }
