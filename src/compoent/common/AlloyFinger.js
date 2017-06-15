@@ -135,7 +135,7 @@ export default class AlloyFinger extends React.Component {
     }
 
     _handleTouchEnd(evt){
-
+        this._emitEvent('onTouchEnd', evt)
         this._cancelLongTap();
         var self = this;
         if( evt.touches.length<2){
