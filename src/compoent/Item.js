@@ -31,9 +31,9 @@ class Item extends React.Component {
     return (
       <AlloyFinger onPressMove={this.onPressMove.bind(this)} onTouchEnd={this.init.bind(this)}>
         <div className={css(areaFactory(level), styles.rightMargin)} onClick={gameStore.chageClick.bind(gameStore, itemData)} >
-          <img src={gameStore.isSuccess? pw : p} className={css(styles.item, transformFactory(itemData.direction))}
+          <img src={p} className={css(styles.item, transformFactory(itemData.direction))}
             style={{
-              filter: itemData.isChoosed ? 'grayscale(100%)' : ''
+              filter: itemData.isChoosed ? 'grayscale(100%)' : gameStore.isSuccess ? 'brightness(5)' : ''
           }} />
         </div>
       </AlloyFinger>

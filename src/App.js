@@ -11,11 +11,17 @@ import {observer} from 'mobx-react'
 class App extends React.Component {
   render () {
     return (
-      <div>
+      <div style={{textAlign: 'center'}}>
         <ItemContainer gameStore={gameStore} />
         <DevTools />
         {gameStore.isSuccess && (<h1> win!!</h1>)}
         {gameStore.isSuccess && (<button onClick={gameStore.initLevel.bind(gameStore, gameStore.list.length + 1)}>下一关</button>)}
+        <p style={
+          {
+            position: 'absolute',
+            bottom: 0
+          }
+        }>点击选择，胜利条件：全部变成同一个字母~</p>
       </div>
     )
   }
