@@ -13,9 +13,8 @@ class App extends React.Component {
     return (
       <div style={{textAlign: 'center'}}>
         <ItemContainer gameStore={gameStore} />
-        <DevTools />
-        {gameStore.isSuccess && (<h1> win!!</h1>)}
-        {gameStore.isSuccess && (<button onClick={gameStore.initLevel.bind(gameStore, gameStore.list.length + 1)}>下一关</button>)}
+        {process.env.NODE_ENV === 'production' || <DevTools />}
+        {gameStore.isSuccess && (<h1 onClick={gameStore.initLevel.bind(gameStore, gameStore.list.length + 1)}> win!! 点我下一关~</h1>)}
         <p style={
           {
             position: 'absolute',
