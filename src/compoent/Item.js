@@ -16,9 +16,9 @@ class Item extends React.Component {
     console.log('X', this.x, 'Y:', this.y)
   }
   init () {
-    if (Math.abs(this.x) > 30 && Math.abs(this.y) < 30) {
+    if (Math.abs(this.x) > 15 && Math.abs(this.y) < 15) {
       gameStore.changeDirection('x')
-    } else if (Math.abs(this.y) > 30 && Math.abs(this.x) < 30) {
+    } else if (Math.abs(this.y) > 15 && Math.abs(this.x) < 15) {
       gameStore.changeDirection('y')
     }
     gameStore.initChoose()
