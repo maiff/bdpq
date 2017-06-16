@@ -6,6 +6,9 @@ import pw from '../asset/img/pw.png'
 import gameStore from '../store/gameState'
 
 import AlloyFinger from './common/AlloyFinger'
+
+import {_p, _q, _b, _d} from './common/direction'
+
 @observer
 class Item extends React.Component {
   x = 0
@@ -21,7 +24,6 @@ class Item extends React.Component {
     } else if (Math.abs(this.y) > 15 && Math.abs(this.x) < 15) {
       gameStore.changeDirection('y')
     }
-    gameStore.initChoose()
     this.x = 0
     this.y = 0
   }
@@ -44,16 +46,16 @@ class Item extends React.Component {
 function transformFactory (direction) {
     let temp = ''
     switch (direction) {
-      case 1:
+      case _p:
         temp = 'scale(1, 1)'
         break
-      case 2:
+      case _q:
         temp = 'scale(-1, 1)'
         break
-      case -1:
+      case _b:
         temp = 'scale(1, -1)'
         break
-      case -2:
+      case _d:
         temp = 'scale(-1, -1)'
     }
     let transform = {

@@ -1,11 +1,8 @@
 import {observable, computed, autorunAsync, action, useStrict} from 'mobx'
-
+import {_p, _q, _b, _d} from '../compoent/common/direction'
 
 useStrict(true)
-const UP = 1
-const DOWN = 2
-const LEFT = -1
-const RIGHT = -2
+
 class Game {
   @observable list = []
   @observable isSuccess = false
@@ -21,12 +18,13 @@ class Game {
         let random = Math.random()
         let obj = {
           id: column * num + row,
-          direction: random > 0.75 ? 1 : random > 0.5 ? 2 : random > 0.25 ? -1 : -2,
+          direction: _d,
           isChoosed: false
         }
         this.list[column].push(obj)
       }
     }
+    this.shuffle(10)
   }
   checkSuccess () {
     let direction = this.list[0][0].direction
@@ -55,43 +53,54 @@ class Game {
       ele.isChoosed = false
     }))
   }
-  @action changeDirection (direction) {
+  @action changeDirection (direction, onlyToShuffle) {
     let list = this.list
     list.forEach(col => col.forEach(ele => {
       if (ele.isChoosed)
         if (direction === 'x') {
           switch (ele.direction) {
-            case 1:
-              ele.direction = 2
+            case _p:
+              ele.direction = _q
               break
-            case 2:
-              ele.direction = 1
+            case _q:
+              ele.direction = _p
               break
-            case -1:
-              ele.direction = -2
+            case _b:
+              ele.direction = _d
               break
-            case -2:
-              ele.direction = -1
+            case _d:
+              ele.direction = _b
               break
           }
         } else if (direction === 'y') {
           switch (ele.direction) {
-            case 1:
-              ele.direction = -1
+            case _p:
+              ele.direction = _b
               break
-            case 2:
-              ele.direction = -2
+            case _q:
+              ele.direction = _d
               break
-            case -1:
-              ele.direction = 1
+            case _b:
+              ele.direction = _p
               break
-            case -2:
-              ele.direction = 2
+            case _d:
+              ele.direction = _q
               break
           }
         }
     }))
-    this.checkSuccess() && (this.isSuccess = true)
+    onlyToShuffle || this.checkSuccess() && (this.isSuccess = true)
+    this.initChoose()
+  }
+  @action shuffle (max) {
+    let list = this.list
+    let length = list.length
+    let i = max
+    while (i--) {
+      console.log(list[getRandom(length)][getRandom(length)])
+      this.chageClick(list[getRandom(length)][getRandom(length)])
+      this.changeDirection(Math.random() < 0.5 ? 'x' : 'y', 1)
+    }
   }
 }
 
@@ -100,6 +109,9 @@ function divide (dividend, divisor) {
 }
 function isDivided (dividend, divisor) {
   return (~~ (dividend / divisor)) === (dividend / divisor)
+}
+function getRandom (limit) {
+  return ~~ (Math.random() * limit)
 }
 
 export default new Game
