@@ -16,7 +16,7 @@ class Item extends React.Component {
   onPressMove (evt) {
     this.x += evt.deltaX
     this.y += evt.deltaY
-    console.log('X', this.x, 'Y:', this.y)
+    // console.log('X', this.x, 'Y:', this.y)
   }
   init () {
     if (Math.abs(this.x) > 15 && Math.abs(this.y) < 15) {

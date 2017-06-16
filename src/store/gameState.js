@@ -97,9 +97,12 @@ class Game {
     let length = list.length
     let i = max
     while (i--) {
-      console.log(list[getRandom(length)][getRandom(length)])
-      this.chageClick(list[getRandom(length)][getRandom(length)])
-      this.changeDirection(Math.random() < 0.5 ? 'x' : 'y', 1)
+      // console.log(list[getRandom(length)][getRandom(length)])
+      let item = list[getRandom(length)][getRandom(length)]
+      let direction = Math.random() < 0.5 ? 'x' : 'y'
+      this.chageClick(item)
+      this.changeDirection(direction, 1)
+      console.log(item.id, direction)
     }
   }
 }
