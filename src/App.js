@@ -22,7 +22,7 @@ class App extends React.Component {
             position: 'absolute',
             bottom: 0
           }
-        }>点击选择，胜利条件：全部变成同一个字母~</p>
+        }>点击选择会选择同一行跟列，滑动改变他们的方向，胜利条件：全部变成同一个字母~</p>
       </div> : <p>请用手机打开</p>
     )
   }
