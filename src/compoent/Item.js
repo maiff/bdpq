@@ -16,6 +16,7 @@ class Item extends React.Component {
   onPressMove (evt) {
     this.x += evt.deltaX
     this.y += evt.deltaY
+    evt.preventDefault()
     // console.log('X', this.x, 'Y:', this.y)
   }
   init () {
